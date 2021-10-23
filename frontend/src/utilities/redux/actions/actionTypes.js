@@ -1,1 +1,2 @@
-export const SET_EVENT = 'SET_EVENT';
+export const SET_EVENT_SUCCESS = 'SET_EVENT_SUCCESS';
+export const SET_EVENT_FAILURE = 'SET_EVENT_FAILURE';
