@@ -1,42 +1,72 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import DatePicker from 'react-datepicker';
 
+import * as eventsActions from '../../utilities/redux/actions/eventsActions';
 import 'react-datepicker/dist/react-datepicker.css';
-
 import './ManageEvent.scss';
 
 class Index extends Component {
   state = {
+    eventName: '',
+    location: '',
     startDate: '',
     endDate: ''
   };
 
   componentDidMount() {}
 
+  handleInputChange = (event) => {
+    const { value, name } = event.target;
+    this.setState({ [name]: value })
+  }
+
   handleDateChange = (date, type) => {
-    this.setState({ [type]: date } , ()=> console.log('bebeeb  --: ', { [type]: date }))
+    this.setState({ [type]: date } ,)
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    const { setEventAction } = this.props;
+    setEventAction(this.state)
   }
 
   render() {
-  const { startDate, endDate } = this.state;
+  const { location, eventName, startDate, endDate } = this.state;
 
     return (
       <div className="content manage-event">
         <p> Manage Event </p>
-        <form>
+        <form onSubmit={this.onSubmit}>
           <div className="mb-3">
             <label htmlFor="exampleInputEventName" className="form-label">Event name</label>
-            <input type="text" className="form-control" id="exampleInputEventName"/>
+            <input
+              type="text"
+              className="form-control"
+              id="exampleInputEventName"
+              name="eventName"
+              value={eventName}
+              onChange={this.handleInputChange}
+            />
           </div>
           <div className="mb-3">
             <label htmlFor="exampleInputLocation" className="form-label">Location</label>
-            <input type="text" className="form-control" id="exampleInputLocation"/>
+            <input
+              type="text"
+              className="form-control"
+              id="exampleInputLocation"
+              name="location"
+              value={location}
+              onChange={this.handleInputChange}
+            />
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleInputStartDate" className="form-label">Start date</label>
+            <label
+              htmlFor="exampleInputStartDate"
+              className="form-label"
+              onChange={(date) => this.handleDateChange(date, 'startDate')}
+            >Start date</label>
             <DatePicker
               className="form-control"
               selected={startDate}
@@ -61,12 +91,15 @@ class Index extends Component {
 }
 
 Index.propTypes = {
+  events: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
-const mapStateToProps = () => ({
+const mapStateToProps = ({ events }) => ({
+  events
 });
 
 const mapDispatchToProps = {
+  ...eventsActions
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index);
