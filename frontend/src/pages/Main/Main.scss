@@ -4,4 +4,8 @@
 .root {
   display: flex;
   justify-content: center;
+
+  .btn-between button {
+    margin-right: 10px;
+  }
 }

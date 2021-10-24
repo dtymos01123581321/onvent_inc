@@ -35,3 +35,28 @@ export const setEventAction = (event) => (dispatch) => {
   }
 }
 
+export const deleteEvents = (event) => {
+  return {
+    type: types.DELETE_EVENTS_SUCCESS,
+    payload: event,
+  };
+};
+
+export const deleteEventsAction = () => (dispatch) => {
+  try {
+    dispatch(deleteEvents());
+    console.log('deleteEventsAction');
+
+    toast.warn(`Delete all events!`, {
+      position: "top-right",
+      autoClose: 5000,
+      closeOnClick: true,
+      pauseOnHover: true,
+      progress: undefined,
+    });
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+

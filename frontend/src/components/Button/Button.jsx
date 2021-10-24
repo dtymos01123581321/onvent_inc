@@ -39,7 +39,7 @@ Button.defaultProps = {
 
 Button.propTypes = {
   size: PropTypes.string.isRequired,
-  color: PropTypes.oneOf(['green', 'blue']).isRequired,
+  color: PropTypes.oneOf(['green', 'pink']).isRequired,
   text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   type: PropTypes.string.isRequired,
   href: PropTypes.oneOfType([PropTypes.string, PropTypes.objectOf(PropTypes.any)]),

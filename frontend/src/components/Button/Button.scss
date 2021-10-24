@@ -47,3 +47,16 @@
     border-color: $green-10;
   }
 }
+
+.btn-color-pink {
+  color: $gray-10;
+  background-color: $pink;
+  border: 1px solid $pink;
+
+  &:hover:not([disabled]) {
+    background-color: $pink;
+    color: $dark-blue-30;
+    border-color: $pink;
+  }
+}
+
