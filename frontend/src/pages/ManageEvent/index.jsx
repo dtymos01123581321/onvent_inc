@@ -36,7 +36,8 @@ class Index extends Component {
       eventName,
       location,
       startDate: moment(startDate).format('YYYY-MM-DD, h:mm:ss'),
-      endDate: moment(endDate).format('YYYY-MM-DD, h:mm:ss') })
+      endDate: moment(endDate).format('YYYY-MM-DD, h:mm:ss'),
+      submittedAt: moment().format('YYYY-MM-DD, h:mm:ss') })
   }
 
   render() {

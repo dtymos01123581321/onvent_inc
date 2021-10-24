@@ -24,15 +24,21 @@ class Index extends Component {
             <th scope="col">Location</th>
             <th scope="col">Start date</th>
             <th scope="col">End date</th>
+            <th scope="col">Submitted at</th>
           </tr>
           </thead>
           <tbody>
-            {events.length ? events.map((event, index) => <tr key={index}>
-              <td>{event.eventName}</td>
-              <td>{event.location}</td>
-              <td>{event.startDate}</td>
-              <td>{event.endDate}</td>
-            </tr>) : ''
+            {events.length ? events
+              .sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt))
+              .map((event, index) =>
+                <tr key={index}>
+                  <td>{event.eventName}</td>
+                  <td>{event.location}</td>
+                  <td>{event.startDate}</td>
+                  <td>{event.endDate}</td>
+                  <td>{event.submittedAt}</td>
+                </tr>
+              ) : ''
             }
           </tbody>
         </table>
