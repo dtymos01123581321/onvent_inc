@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 import * as eventsActions from '../../utilities/redux/actions/eventsActions';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -28,12 +29,18 @@ class Index extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
+    const { eventName, location, startDate, endDate } = this.state;
     const { setEventAction } = this.props;
-    setEventAction(this.state)
+
+    setEventAction({
+      eventName,
+      location,
+      startDate: moment(startDate).format('YYYY-MM-DD, h:mm:ss'),
+      endDate: moment(endDate).format('YYYY-MM-DD, h:mm:ss') })
   }
 
   render() {
-  const { location, eventName, startDate, endDate } = this.state;
+  const { eventName, location, startDate, endDate } = this.state;
 
     return (
       <div className="content manage-event">
@@ -62,11 +69,7 @@ class Index extends Component {
             />
           </div>
           <div className="mb-3">
-            <label
-              htmlFor="exampleInputStartDate"
-              className="form-label"
-              onChange={(date) => this.handleDateChange(date, 'startDate')}
-            >Start date</label>
+            <label htmlFor="exampleInputStartDate" className="form-label">Start date</label>
             <DatePicker
               className="form-control"
               selected={startDate}

@@ -12,10 +12,31 @@ class Index extends Component {
   componentDidMount() {}
 
   render() {
+    const { events } = this.props;
 
     return (
       <div className="content root">
         <p> Root </p>
+        <table className="table">
+          <thead>
+          <tr>
+            <th scope="col">Event name</th>
+            <th scope="col">Location</th>
+            <th scope="col">Start date</th>
+            <th scope="col">End date</th>
+          </tr>
+          </thead>
+          <tbody>
+            {events.length ? events.map((event, index) => <tr key={index}>
+              <td>{event.eventName}</td>
+              <td>{event.location}</td>
+              <td>{event.startDate}</td>
+              <td>{event.endDate}</td>
+            </tr>) : ''
+            }
+          </tbody>
+        </table>
+
         <div className="btn">
           <Button type="button" size="l" color="green" text="Manage Event" href="/manageEvent" />
         </div>
@@ -25,9 +46,11 @@ class Index extends Component {
 }
 
 Index.propTypes = {
+  events: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
-const mapStateToProps = () => ({
+const mapStateToProps = ({ events }) => ({
+  events
 });
 
 const mapDispatchToProps = {

@@ -4,7 +4,7 @@ const initState = []
 
 export const events = (state = initState, action) => {
   switch (action.type) {
-    case types.SET_EVENT:
+    case types.SET_EVENT_SUCCESS:
       return [...state, action.payload];
     default:
       return state;
