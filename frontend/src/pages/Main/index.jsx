@@ -25,8 +25,6 @@ class Index extends Component {
     const { isModal } = this.state;
     const { events } = this.props;
 
-    console.log('isModal  --: ', isModal);
-
     return (
       <div className="content root">
         <p> Root </p>
@@ -50,7 +48,7 @@ class Index extends Component {
                 <td>{event.endDate}</td>
                 <td>{event.submittedAt}</td>
               </tr>
-            ) : ''}
+            ) : <h3>You have no current events</h3>}
           </tbody>
         </table>
 
