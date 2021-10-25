@@ -1,8 +1,9 @@
 import { http } from './httpService';
+import apiEndpoints from '../apiEndpoints';
 
-export const fetchEvents = async (url) => {
+export const fetchEvents = async () => {
   try {
-    const response = await http.get(url);
+    const response = await http.get(apiEndpoints.events);
     return response.data;
   } catch (error) {
     if (error.response.status !== 401) {
@@ -12,7 +13,19 @@ export const fetchEvents = async (url) => {
   }
 };
 
-export const addEvent = async (url, data) => {
+export const addEvent = async (data) => {
+  try {
+    const response = await http.post(apiEndpoints.events, data);
+    return response.data;
+  } catch (error) {
+    if (error.response.status !== 401) {
+      throw new Error(error);
+    }
+    return;
+  }
+};
+
+export const addUser = async (url, data) => {
   try {
     const response = await http.post(url, data);
     return response.data;

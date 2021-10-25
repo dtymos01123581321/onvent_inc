@@ -1,0 +1,11 @@
+@import "../../media/styles/mixins";
+@import "../../media/styles/variables";
+
+.register {
+  display: flex;
+  justify-content: center;
+
+  .image-box img {
+    width: 180px;
+  }
+}

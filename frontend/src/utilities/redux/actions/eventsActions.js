@@ -3,7 +3,6 @@ import history from '../../history';
 import { toast } from 'react-toastify';
 import routeNames from '../../routeNames';
 import { fetchEvents, addEvent } from '../../services/eventsService';
-import apiEndpoints from '../../apiEndpoints';
 
 export const setEvent = (event) => {
   return {
@@ -28,7 +27,7 @@ export const setEvents = (events) => {
 
 export const setEventAction = (event) => async (dispatch) => {
   try {
-    const data = await addEvent(apiEndpoints.events, event)
+    const data = await addEvent(event)
 
     dispatch(setEvent(data));
     toast.info(`The new event was added!`, {
@@ -72,7 +71,7 @@ export const deleteEventsAction = () => (dispatch) => {
 
 export const fetchEventsAction = () => async (dispatch) => {
     try {
-      const data = await fetchEvents(apiEndpoints.events);
+      const data = await fetchEvents();
       dispatch(setEvents(data));
 
     } catch (error) {

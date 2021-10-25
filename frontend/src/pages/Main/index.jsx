@@ -35,7 +35,6 @@ class Index extends Component {
 
   render() {
     const { isModal, events } = this.state;
-    console.log('events  --: ', events);
 
     return (
       <div className="content root">
@@ -60,11 +59,14 @@ class Index extends Component {
                 <td>{event.endDate}</td>
                 <td>{event.submittedAt}</td>
               </tr>
-            ) : <h3>You have no current events</h3>}
+            ) : <tr><td><h3>You have no current events</h3></td></tr>}
           </tbody>
         </table>
 
         <div className="btn btn-between">
+          <button type="button" className="btn btn-success" onClick={() => history.push('/register')}>
+            Register
+          </button>
           <button type="button" className="btn btn-primary" data-bs-toggle="modal"
                   onClick={() => history.push('/manageEvent')}>
             Manage Event

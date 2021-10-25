@@ -3,8 +3,6 @@ import { toast } from 'react-toastify';
 
 import { SERVER_ERROR } from '../constants';
 
-const { REACT_APP_BASE_URL } = process.env;
-
 const unauthorizedErrorInterceptor = () => {
   return async (error) => {
     if (!error) {
@@ -26,7 +24,6 @@ const unauthorizedErrorInterceptor = () => {
 
 const createAxiosInstance = () => {
   const client = axios.create({
-    baseURL: `${REACT_APP_BASE_URL}/solr/api/v1.0`,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',

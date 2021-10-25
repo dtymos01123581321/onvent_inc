@@ -8,6 +8,7 @@ import * as eventsActions from '../../utilities/redux/actions/eventsActions';
 import 'react-datepicker/dist/react-datepicker.css';
 import './ManageEvent.scss';
 import { TIME_TEMPLATE } from '../../utilities/constants';
+import history from '../../utilities/history';
 
 class Index extends Component {
   state = {
@@ -88,7 +89,10 @@ class Index extends Component {
               dateFormat="Pp"
             />
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <div className="mb-3 d-flex justify-content-evenly">
+            <button className="btn btn-success" onClick={() => history.push('/')}>Home</button>
+            <button type="submit" className="btn btn-primary">Submit</button>
+          </div>
         </form>
       </div>
     );
