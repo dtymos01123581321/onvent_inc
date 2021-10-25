@@ -1,7 +1,7 @@
-const baseURL = 'https://localhost:8080/api';
+const baseURL = 'http://localhost:6101';
 
 const apiEndpoints = {
-  event: `${baseURL}/`,
+  events: `${baseURL}/events`,
 };
 
 export default apiEndpoints;

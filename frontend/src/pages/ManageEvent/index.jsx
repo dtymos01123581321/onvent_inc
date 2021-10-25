@@ -7,6 +7,7 @@ import moment from 'moment';
 import * as eventsActions from '../../utilities/redux/actions/eventsActions';
 import 'react-datepicker/dist/react-datepicker.css';
 import './ManageEvent.scss';
+import { TIME_TEMPLATE } from '../../utilities/constants';
 
 class Index extends Component {
   state = {
@@ -35,9 +36,9 @@ class Index extends Component {
     setEventAction({
       eventName,
       location,
-      startDate: moment(startDate).format('YYYY-MM-DD, h:mm:ss'),
-      endDate: moment(endDate).format('YYYY-MM-DD, h:mm:ss'),
-      submittedAt: moment().format('YYYY-MM-DD, h:mm:ss') })
+      startDate: moment(startDate).format(TIME_TEMPLATE),
+      endDate: moment(endDate).format(TIME_TEMPLATE),
+      submittedAt: moment().format(TIME_TEMPLATE)})
   }
 
   render() {

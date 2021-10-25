@@ -8,10 +8,22 @@ import history from '../../utilities/history';
 
 class Index extends Component {
   state = {
-    isModal: false
+    isModal: false,
+    events: []
   };
 
   componentDidMount() {
+    const { fetchEventsAction } = this.props;
+    fetchEventsAction();
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (state.events !== props.events) {
+      return {
+        events: props.events,
+      };
+    }
+    return null;
   }
 
   handleDeleteEvents = () => {
@@ -22,8 +34,8 @@ class Index extends Component {
   };
 
   render() {
-    const { isModal } = this.state;
-    const { events } = this.props;
+    const { isModal, events } = this.state;
+    console.log('events  --: ', events);
 
     return (
       <div className="content root">
