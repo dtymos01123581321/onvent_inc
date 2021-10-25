@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import history from '../../utilities/history';
-import * as eventsActions from '../../utilities/redux/actions/eventsActions';
+import * as usersActions from '../../utilities/redux/actions/usersActions';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Register.scss';
 import noImage from '../../media/img/noimageavailable.png';
@@ -31,13 +31,12 @@ class Index extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     const { name, email, password, confirmPassword, image } = this.state;
-    const { addEventAction } = this.props;
+    const { registrationAction } = this.props;
 
-    addEventAction({
+    registrationAction({
       name,
       email,
-      password,
-      confirmPassword})
+      password})
 
     console.log('onSubmit  --: ', name, email, password, confirmPassword, image);
   }
@@ -70,7 +69,7 @@ class Index extends Component {
           <div className="mb-3">
             <label htmlFor="inputEmail" className="form-label">Email</label>
             <input
-              type="text"
+              type="email"
               className="form-control"
               id="inputEmail"
               name="email"
@@ -81,7 +80,7 @@ class Index extends Component {
           <div className="mb-3">
             <label htmlFor="inputPassword" className="form-label">Password</label>
             <input
-              type="text"
+              type="password"
               className="form-control"
               id="inputPassword"
               name="password"
@@ -92,7 +91,7 @@ class Index extends Component {
           <div className="mb-3">
             <label htmlFor="inputConfirmPassword" className="form-label">Confirm Password</label>
             <input
-              type="text"
+              type="password"
               className="form-control"
               id="inputConfirmPassword"
               name="confirmPassword"
@@ -130,7 +129,7 @@ const mapStateToProps = ({ events }) => ({
 });
 
 const mapDispatchToProps = {
-  ...eventsActions
+  ...usersActions
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index);

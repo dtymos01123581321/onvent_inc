@@ -24,15 +24,3 @@ export const addEvent = async (data) => {
     return;
   }
 };
-
-export const addUser = async (url, data) => {
-  try {
-    const response = await http.post(url, data);
-    return response.data;
-  } catch (error) {
-    if (error.response.status !== 401) {
-      throw new Error(error);
-    }
-    return;
-  }
-};

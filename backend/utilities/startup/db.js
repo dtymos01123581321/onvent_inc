@@ -14,4 +14,5 @@ module.exports = () => {
 
   mongoose.Promise = global.Promise;
   require('../../models/event.model');
+  require('../../models/user.model');
 };
