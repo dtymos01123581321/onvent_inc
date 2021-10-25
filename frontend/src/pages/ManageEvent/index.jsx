@@ -47,7 +47,7 @@ class Index extends Component {
 
     return (
       <div className="content manage-event">
-        <p> Manage Event </p>
+        <h1> Manage Event </h1>
         <form onSubmit={this.onSubmit}>
           <div className="mb-3">
             <label htmlFor="exampleInputEventName" className="form-label">Event name</label>

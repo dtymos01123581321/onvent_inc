@@ -17,6 +17,7 @@ function App() {
             <Route exact path={routeNames.root} component={loadable.root} />
             <Route path={routeNames.manageEvent} component={loadable.manageEvent} />
             <Route path={routeNames.registration} component={loadable.registration} />
+            <Route path={routeNames.login} component={loadable.login} />
             <Route component={loadable.NoMatch} />
           </Switch>
         </div>

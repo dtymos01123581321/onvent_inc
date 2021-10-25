@@ -38,7 +38,7 @@ class Index extends Component {
 
     return (
       <div className="content root">
-        <p> Root </p>
+        <h1> Welcome </h1>
         <table className="table">
           <thead>
           <tr>
@@ -64,6 +64,9 @@ class Index extends Component {
         </table>
 
         <div className="btn btn-between">
+          <button type="button" className="btn btn-dark" onClick={() => history.push('/login')}>
+            Login
+          </button>
           <button type="button" className="btn btn-success" onClick={() => history.push('/register')}>
             Register
           </button>
