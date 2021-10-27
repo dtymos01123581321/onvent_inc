@@ -1,5 +1,6 @@
 const express = require('express');
 const EventsController = require('../controllers/events.controller');
+const auth = require('./middlewares/auth');
 
 const router = express.Router();
 
@@ -10,7 +11,7 @@ const router = express.Router();
  *
  * @apiSuccess {json} Return events.
  */
-router.get('/', EventsController.getAll);
+router.get('/', auth, EventsController.getAll);
 
 /**
  * @api {get} /:id Get event by Id.
@@ -21,7 +22,7 @@ router.get('/', EventsController.getAll);
  *
  * @apiSuccess {json} Return event.
  */
-router.get('/:id', EventsController.getById);
+router.get('/:id', auth, EventsController.getById);
 
 /**
  * @api {post} / Add the new event.
@@ -39,7 +40,7 @@ router.post('/', EventsController.add);
  *
  * @apiSuccess {json} Return result.
  */
-router.delete('/', EventsController.deleteAll);
+router.delete('/', auth, EventsController.deleteAll);
 
 /**
  * @api {delete} /:id Delete event by id.
@@ -50,6 +51,6 @@ router.delete('/', EventsController.deleteAll);
  *
  * @apiSuccess {json} Return result.
  */
-router.delete('/:id', EventsController.deleteById);
+router.delete('/:id', auth, EventsController.deleteById);
 
 module.exports = router;

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import { SERVER_ERROR } from '../constants';
+import { store } from '../../utilities/redux/store';
 
 const unauthorizedErrorInterceptor = () => {
   return async (error) => {
@@ -31,6 +32,7 @@ const createAxiosInstance = () => {
   });
 
   client.interceptors.request.use((config) => {
+    config.headers = { authorization: `Bearer ${store.getState().token}` };
     return config;
   }, error => Promise.reject(error));
 

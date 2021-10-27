@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import history from '../../utilities/history';
-import * as usersActions from '../../utilities/redux/actions/usersActions';
+import * as authActions from '../../utilities/redux/actions/authActions';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Login.scss';
 
@@ -87,7 +87,7 @@ const mapStateToProps = ({ events }) => ({
 });
 
 const mapDispatchToProps = {
-  ...usersActions
+  ...authActions
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index);

@@ -1,7 +1,11 @@
 const express = require('express');
 const UsersController = require('../controllers/users.controller');
+const AuthController = require('../controllers/auth.controller');
+const auth = require('./middlewares/auth');
 
 const router = express.Router();
+
+router.post('/login', AuthController.login);
 
 /**
  * @api {get} / Get All users
@@ -10,7 +14,7 @@ const router = express.Router();
  *
  * @apiSuccess {json} Return users.
  */
-router.get('/', UsersController.getAll);
+router.get('/', auth,  UsersController.getAll);
 
 /**
  * @api {get} /:id Get user by Id.
