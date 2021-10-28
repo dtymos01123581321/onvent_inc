@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 
 import { SERVER_ERROR } from '../constants';
 import { store } from '../../utilities/redux/store';
+import { deleteTokenAction } from '../redux/actions/authActions';
 
 const unauthorizedErrorInterceptor = () => {
   return async (error) => {
@@ -15,7 +16,7 @@ const unauthorizedErrorInterceptor = () => {
     }
 
     if (error.response && error.response.status === 401) {
-
+      await store.dispatch(deleteTokenAction());
     }
 
     // need to passthrough the error if we're doing nothing with it

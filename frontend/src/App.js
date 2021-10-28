@@ -8,6 +8,7 @@ import './App.scss';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <div className="App">
           <Switch>
             <Route exact path={routeNames.root} component={loadable.root} />
-            <Route path={routeNames.manageEvent} component={loadable.manageEvent} />
+            <PrivateRoute path={routeNames.manageEvent} component={loadable.manageEvent} />
             <Route path={routeNames.registration} component={loadable.registration} />
             <Route path={routeNames.login} component={loadable.login} />
             <Route component={loadable.NoMatch} />

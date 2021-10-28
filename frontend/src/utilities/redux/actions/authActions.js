@@ -27,3 +27,13 @@ export const loginAction = (data) => async (dispatch) => {
     dispatch(setTokenFailure());
   }
 };
+
+export const deleteTokenAction = () => async (dispatch) => {
+  try {
+    dispatch(setTokenSuccess(''));
+
+    history.push(routeNames.root);
+  } catch (error) {
+    dispatch(setTokenFailure());
+  }
+};
