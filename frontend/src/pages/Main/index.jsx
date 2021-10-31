@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import './Main.scss';
 import * as eventsActions from '../../utilities/redux/actions/eventsActions';
 import history from '../../utilities/history';
+import { BASE_URL } from '../../utilities/constants';
+import noImage from '../../media/img/noimageavailable.png';
 
 class Index extends Component {
   state = {
@@ -42,6 +44,7 @@ class Index extends Component {
         <table className="table">
           <thead>
           <tr>
+            <th scope="col">Images</th>
             <th scope="col">Event name</th>
             <th scope="col">Location</th>
             <th scope="col">Start date</th>
@@ -53,6 +56,7 @@ class Index extends Component {
             .sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt))
             .map((event, index) =>
               <tr key={index}>
+                <td><img src={event.user.image ? `${BASE_URL}${event.user.image}` : noImage} alt="#"></img></td>
                 <td>{event.eventName}</td>
                 <td>{event.location}</td>
                 <td>{event.startDate}</td>

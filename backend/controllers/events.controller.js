@@ -5,7 +5,7 @@ const Event = mongoose.model('Event');
 class EventsController {
   async getAll(req, res) {
     try {
-      const data = await Event.find({});
+      const data = await Event.find({}).populate('user');
 
       res.status(OK).json(data);
     } catch (error) {
@@ -28,7 +28,8 @@ class EventsController {
   async add(req, res) {
     try {
       const body = req.body;
-      const newEvent = new Event(body);
+      console.log('user  --: ', req.user);
+      const newEvent = new Event({ ...body, user: req.user});
 
       const data =  await newEvent.save();
 

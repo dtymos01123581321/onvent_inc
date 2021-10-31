@@ -1,13 +1,14 @@
+const path = require('path');
 const express = require('express');
 const app = express();
-const cors = require('cors');
 
 const keys = require('./utilities/config/keys');
 
-app.use(cors());
+app.use('/public', express.static(path.join(__dirname, 'public')))
 
 require('./utilities/startup/bodyParser')(app);
 require('./utilities/startup/db')('WITrack API');
+
 require('./routes')(app);
 
 const server = app.listen(keys.apiPort, () => {

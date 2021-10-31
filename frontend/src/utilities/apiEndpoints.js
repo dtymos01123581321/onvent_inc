@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:6101';
+import { BASE_URL } from './constants';
 
 const apiEndpoints = {
   events: `${BASE_URL}/events`,

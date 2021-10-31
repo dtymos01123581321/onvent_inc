@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import history from '../../utilities/history';
 import * as usersActions from '../../utilities/redux/actions/usersActions';
-import 'react-datepicker/dist/react-datepicker.css';
 import './Register.scss';
 import noImage from '../../media/img/noimageavailable.png';
 
@@ -14,7 +14,7 @@ class Index extends Component {
     email: '',
     password: '',
     confirmPassword: '',
-    image: noImage
+    file: null,
   };
 
   componentDidMount() {}
@@ -28,30 +28,31 @@ class Index extends Component {
     this.setState({ [type]: date } ,)
   }
 
-  onSubmit = (event) => {
-    event.preventDefault();
-    const { name, email, password, confirmPassword, image } = this.state;
+  onFormSubmit = (e) => {
+    e.preventDefault();
+    const { name, email, password, file } = this.state;
     const { registrationAction } = this.props;
 
     registrationAction({
       name,
       email,
-      password})
-
-    console.log('onSubmit  --: ', name, email, password, confirmPassword, image);
+      password,
+      file})
   }
 
-  handleChangeImage = e => {
-    this.setState({[e.target.name]: URL.createObjectURL(e.target.files[0])})
+  handleChangeImage = (e) => {
+    this.setState({file:e.target.files});
   }
 
   render() {
-  const { name, email, password, confirmPassword, image } = this.state;
+  const { name, email, password, confirmPassword, file } = this.state;
+
+    const image = file ? URL.createObjectURL(file[0]) : noImage;
 
     return (
       <div className="content register">
-        <p> Manage Event </p>
-        <form onSubmit={this.onSubmit}>
+        <h1> Register </h1>
+        <form onSubmit={this.onFormSubmit}>
           <div className="mb-3 d-flex justify-content-center image-box">
             <img src={image} alt="#"/>
           </div>
@@ -105,7 +106,7 @@ class Index extends Component {
               type="file"
               className="form-control"
               id="inputImage"
-              name="image"
+              name="file"
               accept="image/*"
               onChange={this.handleChangeImage}
             />
@@ -115,6 +116,13 @@ class Index extends Component {
             <button type="submit" className="btn btn-primary">Submit</button>
           </div>
         </form>
+
+        {/*<form onSubmit={this.onFormSubmit}>*/}
+        {/*  <h1>File Upload</h1>*/}
+        {/*  <input type="file" className="custom-file-input" name="myImage" onChange= {this.onChange} />*/}
+        {/*  {console.log(this.state.file)}*/}
+        {/*  <button className="upload-button" type="submit">Upload to DB</button>*/}
+        {/*</form>*/}
       </div>
     );
   }

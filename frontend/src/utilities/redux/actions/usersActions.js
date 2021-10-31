@@ -3,7 +3,8 @@ import { addUser } from '../../services/usersService';
 
 export const registrationAction = (params) => async () => {
     try {
-      await addUser(params);
+      const data = await addUser(params);
+      console.log('data  --: ', data);
 
       history.push('/')
     } catch (error) {

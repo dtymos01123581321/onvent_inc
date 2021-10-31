@@ -9,7 +9,17 @@
     margin-right: 10px;
   }
 
-  .table h3 {
-    color: $orange;
+  .table {
+    h3 {
+      color: $orange;
+    }
+
+    td {
+      vertical-align: middle;
+    }
+
+    img {
+      width: 100px;
+    }
   }
 }

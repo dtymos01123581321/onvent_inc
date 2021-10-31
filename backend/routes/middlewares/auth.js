@@ -15,13 +15,14 @@ module.exports = async (req, res, next) => {
     const decoded = jwt.verify(token, SECRET_KEY);
 
     const { email } = decoded;
-    const user = await User.find({ email });
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(400).json({ msg: 'User not found.' }).send();
     }
 
-    req.user = decoded;
+    console.log('user  _id: --: ', user['_id']);
+    req.user = user;
     next();
   }
   catch (ex) {

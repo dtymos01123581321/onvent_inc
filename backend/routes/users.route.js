@@ -2,6 +2,7 @@ const express = require('express');
 const UsersController = require('../controllers/users.controller');
 const AuthController = require('../controllers/auth.controller');
 const auth = require('./middlewares/auth');
+const upload = require('./middlewares/fileStorage');
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router.post('/login', AuthController.login);
  *
  * @apiSuccess {json} Return users.
  */
-router.get('/', auth,  UsersController.getAll);
+router.get('/', UsersController.getAll);
 
 /**
  * @api {get} /:id Get user by Id.
@@ -34,7 +35,7 @@ router.get('/:id', UsersController.getById);
  *
  * @apiSuccess {json} Return user.
  */
-router.post('/', UsersController.add);
+router.post('/', upload.array("images", 4), UsersController.add);
 
 /**
  * @api {delete} / Delete all users.

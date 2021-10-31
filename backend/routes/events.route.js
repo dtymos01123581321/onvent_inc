@@ -11,7 +11,7 @@ const router = express.Router();
  *
  * @apiSuccess {json} Return events.
  */
-router.get('/', auth, EventsController.getAll);
+router.get('/', EventsController.getAll);
 
 /**
  * @api {get} /:id Get event by Id.
@@ -31,7 +31,7 @@ router.get('/:id', auth, EventsController.getById);
  *
  * @apiSuccess {json} Return event.
  */
-router.post('/', EventsController.add);
+router.post('/', auth, EventsController.add);
 
 /**
  * @api {delete} / Delete all events.

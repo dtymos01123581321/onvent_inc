@@ -8,7 +8,8 @@ const schema = new Schema({
   endDate: { type: Date, required: true },
   submittedAt: { type: Date, required: true },
   createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now }
+  updatedAt: { type: Date, default: Date.now },
+  user:{ type: Schema.Types.ObjectId, ref: "User" }
 });
 
 mongoose.model('Event', schema);
