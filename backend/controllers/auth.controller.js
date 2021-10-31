@@ -13,11 +13,11 @@ class Auth {
       password,
     } = req.body;
 
-    const user = await User.find({ email, password: md5(password) });
+    const user = await User.findOne({ email, password: md5(password) });
 
-    if (user.length) {
+    if (user) {
       const token = jwt.sign({
-        email
+        email, _id: user._id, name: user.name
       }, SECRET_KEY, {
         expiresIn: '1h'
       });

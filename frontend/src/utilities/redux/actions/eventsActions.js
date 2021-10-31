@@ -2,7 +2,7 @@ import * as types from './actionTypes';
 import history from '../../history';
 import { toast } from 'react-toastify';
 import routeNames from '../../routeNames';
-import { fetchEvents, addEvent } from '../../services/eventsService';
+import { fetchEvents, addEvent, deleteEventById } from '../../services/eventsService';
 
 export const setEvent = (event) => {
   return {
@@ -66,6 +66,38 @@ export const deleteEventsAction = () => (dispatch) => {
 
   } catch (error) {
     console.log(error)
+  }
+}
+
+export const deleteEventSuccess = (event) => {
+  return {
+    type: types.DELETE_EVENT_SUCCESS,
+    payload: event,
+  };
+};
+
+export const deleteEventFailure = (error) => {
+  return {
+    type: types.DELETE_EVENT_FAILURE,
+    payload: error,
+  };
+};
+
+export const deleteEventAction = (id) => async (dispatch) => {
+  try {
+    await deleteEventById(id);
+
+    dispatch(deleteEventSuccess(id));
+
+    toast.warn(`Delete event by id - ${id}!`, {
+      position: "top-right",
+      autoClose: 5000,
+      closeOnClick: true,
+      pauseOnHover: true,
+      progress: undefined,
+    });
+  } catch (error) {
+    dispatch(deleteEventFailure(id));
   }
 }
 

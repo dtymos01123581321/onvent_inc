@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { OK, NOT_FOUND } = require('http-status');
+const { BAD_REQUEST, UNAUTHORIZED } = require('http-status');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
@@ -8,24 +8,21 @@ const tokenParser = require ('../../utilities/tokenParser');
 
 module.exports = async (req, res, next) => {
   const token = tokenParser(req);
-
-  if (!token) return res.status(401).send('Access denied. No token provided.');
+  if (!token) return res.status(UNAUTHORIZED).send('Access denied. No token provided.');
 
   try {
     const decoded = jwt.verify(token, SECRET_KEY);
-
     const { email } = decoded;
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(400).json({ msg: 'User not found.' }).send();
+      return res.status(BAD_REQUEST).json({ msg: 'User not found.' }).send();
     }
 
-    console.log('user  _id: --: ', user['_id']);
     req.user = user;
     next();
   }
   catch (ex) {
-    res.status(400).send({error: 'Invalid token.'});
+    res.status(BAD_REQUEST).send({error: 'Invalid token.'});
   }
 }

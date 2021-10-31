@@ -51,6 +51,6 @@ router.delete('/', auth, EventsController.deleteAll);
  *
  * @apiSuccess {json} Return result.
  */
-router.delete('/:id', auth, EventsController.deleteById);
+router.delete('/:id', EventsController.deleteById);
 
 module.exports = router;

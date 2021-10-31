@@ -28,7 +28,7 @@ export const loginAction = (data) => async (dispatch) => {
   }
 };
 
-export const deleteTokenAction = () => async (dispatch) => {
+export const logoutAction = () => async (dispatch) => {
   try {
     dispatch(setTokenSuccess(''));
 

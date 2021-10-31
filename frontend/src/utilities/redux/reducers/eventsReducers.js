@@ -10,6 +10,9 @@ export const events = (state = initState, action) => {
       return action.payload;
     case types.DELETE_EVENTS_SUCCESS:
       return [];
+    case types.DELETE_EVENT_SUCCESS:
+      const newEvents = [...state];
+      return newEvents.filter( event => event._id !== action.payload );
     default:
       return state;
   }

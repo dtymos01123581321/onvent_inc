@@ -28,7 +28,6 @@ class EventsController {
   async add(req, res) {
     try {
       const body = req.body;
-      console.log('user  --: ', req.user);
       const newEvent = new Event({ ...body, user: req.user});
 
       const data =  await newEvent.save();
@@ -52,9 +51,10 @@ class EventsController {
 
   async deleteById(req, res) {
     try {
-      const { id } = req.query;
+      const { id } = req.params;
+      const data = await Event.deleteOne({ _id: id });
 
-      // res.status(OK).json({ data, cache: false });
+      res.status(OK).json({ data });
     } catch (error) {
       console.error(error);
       res.status(FORBIDDEN).json({ error: error.message });
