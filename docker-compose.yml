@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  backend:
+    build:
+      dockerfile: "Dockerfile"
+      context: ./backend
+    env_file: .env
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
+    stdin_open: true
+    tty: true
+    links:
+      - mongo
+  frontend:
+    build:
+      dockerfile: "Dockerfile"
+      context: ./frontend
+    env_file: .env
+    ports:
+      - "6101:6101"
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+    stdin_open: true
+    tty: true
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+

@@ -35,8 +35,7 @@
     "eslint": "eslint  --ext .js",
     "format": "prettier-eslint --write \"src/**/*.js\"",
     "staging": "npm run build && npm run server",
-    "start-app": "npm run build && pm2 start index.js",
-    "stop-app": "pm2 stop index.js"
+    "start-app": "npm run build && node index.js"
   },
   "eslintConfig": {
     "extends": "react-app"
