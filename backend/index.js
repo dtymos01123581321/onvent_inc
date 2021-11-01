@@ -7,7 +7,7 @@ const keys = require('./utilities/config/keys');
 app.use('/public', express.static(path.join(__dirname, 'public')))
 
 require('./utilities/startup/bodyParser')(app);
-require('./utilities/startup/db')('WITrack API');
+require('./utilities/startup/db')('OnVent API');
 
 require('./routes')(app);
 

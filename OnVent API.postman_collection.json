@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "6e2b5254-38a8-47c3-8466-646a3162cf0a",
+		"name": "OnVent API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test2@test.com\", \n    \"password\": \"12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6101/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6101",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sigup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Peter",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "peter@peter.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/Users/dmitrijtimosik/Pictures/IMG_2889-US Loteria wizowa DV-2020 (Zielona karta)-600x600 px.jpg"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6101/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6101",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "GET All users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6101/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6101",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Peter",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"description": "options: {\"filename\": \"Logo_flame.png\", \"contentType\": \"image/png\"}",
+									"type": "file",
+									"src": "/Users/dmitrijtimosik/Pictures/IMG_2889-US Loteria wizowa DV-2020 (Zielona karta)-600x600 px.jpg"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:6101/users",
+							"host": [
+								"localhost"
+							],
+							"port": "6101",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "events",
+			"item": [
+				{
+					"name": "GET All events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6101/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6101",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE event by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6101/events/234234234",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6101",
+							"path": [
+								"events",
+								"234234234"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
