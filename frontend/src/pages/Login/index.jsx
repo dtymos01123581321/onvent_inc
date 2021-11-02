@@ -50,12 +50,16 @@ class Index extends Component {
             <label htmlFor="inputEmail" className="form-label">Email</label>
             <input
               type="email"
-              className="form-control"
+              className={`form-control ${email ? 'is-valid' : 'is-invalid'}`}
               id="inputEmail"
               name="email"
               value={email}
               onChange={this.handleInputChange}
+              required
             />
+            <div className="valid-feedback" style={{ display: `${email ? 'none' : 'block'}`, color: 'red' }}>
+              Please provide a email.
+            </div>
           </div>
           <div className="mb-3">
             <label htmlFor="inputPassword" className="form-label">Password</label>

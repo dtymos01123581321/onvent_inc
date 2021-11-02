@@ -23,6 +23,6 @@ module.exports = async (req, res, next) => {
     next();
   }
   catch (ex) {
-    res.status(BAD_REQUEST).send({error: 'Invalid token.'});
+    res.status(UNAUTHORIZED).send({error: 'Invalid token.'});
   }
 }

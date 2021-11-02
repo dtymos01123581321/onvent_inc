@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import jwt from 'jsonwebtoken';
 
 import './Main.scss';
 import * as eventsActions from '../../utilities/redux/actions/eventsActions';
 import * as authActions from '../../utilities/redux/actions/authActions';
 import history from '../../utilities/history';
-import { BASE_URL, SECRET_KEY } from '../../utilities/constants';
+import { BASE_URL } from '../../utilities/constants';
 import noImage from '../../media/img/noimageavailable.png';
+import { parseToken } from '../../utilities/utils';
 
 class Index extends Component {
   state = {
@@ -41,7 +41,7 @@ class Index extends Component {
     const { isModal, events } = this.state;
     const { token, logoutAction, deleteEventAction } = this.props;
 
-    const decoded = token && jwt.verify(token, SECRET_KEY);
+    const decoded = parseToken(token);
 
     return (
       <div>
@@ -71,6 +71,7 @@ class Index extends Component {
               <th scope="col">Start date</th>
               <th scope="col">End date</th>
               <th scope="col">Submitted at</th>
+              <th scope="col">Status</th>
               <th scope="col">{token && 'Action'}</th>
             </tr>
             </thead>
@@ -84,6 +85,7 @@ class Index extends Component {
                   <td>{event.startDate}</td>
                   <td>{event.endDate}</td>
                   <td>{event.submittedAt}</td>
+                  <td>{event.status}</td>
                   <td>
                     {token && <button
                       type="button"
